@@ -67,20 +67,20 @@ pipeline {
              }
        }
 
-       stage("Push to DockerHub") {
+     /*   stage("Push to DockerHub") {
             steps {
                 
                         sh 'docker login -u fedix23 -p Solid1337'
                         sh 'docker image push fedix23/devops:new'
                 }
-            }
+            } */
             
 
         
 
         stage("Docker-Compose") {
           steps {
-              sh 'docker-compose up -d'
+              sh 'docker compose up -d'
              }
 
 
