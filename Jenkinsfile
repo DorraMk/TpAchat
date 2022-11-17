@@ -37,7 +37,7 @@ pipeline {
 
                 withCredentials([string(credentialsId: 'SonarId', variable: 'Sonar')]) {
 
-                      sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=${Sonar}'
+                      sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=bigfk'
                 }
 
 
@@ -72,7 +72,7 @@ pipeline {
                 script {
 
                     withCredentials([string(credentialsId: 'DockerId', variable: 'Docker')]) {
-                        sh 'docker login -u fedix23 -p ${Docker}'
+                        sh 'docker login -u fedix23 -p Solid$-1337'
                         sh 'docker image push fedix23/devops:$BUILD_NUMBER'
                 }
             }
