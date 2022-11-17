@@ -70,7 +70,7 @@ pipeline {
        stage("Push to DockerHub") {
             steps {
                 
-                        sh 'docker login -u fedix23 -p Solid$-1337'
+                        sh 'docker login -u fedix23 -p Solid1337'
                         sh 'docker image push fedix23/devops:new'
                 }
             }
