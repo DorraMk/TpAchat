@@ -35,13 +35,13 @@ pipeline {
             steps {
                   echo "Sonarqube Testing "
 
-                withCredentials([string(credentialsId: 'SonarId', variable: 'Sonar')]) {
+               
 
                       sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=bigfk'
                 }
 
 
-            }
+            
         }
 
         stage('Create Package') {
@@ -62,21 +62,19 @@ pipeline {
         stage("Build our Image") {
           steps {
 
-              sh 'docker build -t fedix23/devops:$BUILD_NUMBER .'
+              sh 'docker build -t fedix23/devops:new .'
 
              }
        }
 
        stage("Push to DockerHub") {
             steps {
-                script {
-
-                    withCredentials([string(credentialsId: 'DockerId', variable: 'Docker')]) {
+                
                         sh 'docker login -u fedix23 -p Solid$-1337'
-                        sh 'docker image push fedix23/devops:$BUILD_NUMBER'
+                        sh 'docker image push fedix23/devops:new'
                 }
             }
-            }
+            
 
         }
 
@@ -88,6 +86,5 @@ pipeline {
 
        }
 
-
-     }
 }
+   
