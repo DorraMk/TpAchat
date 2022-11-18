@@ -1,16 +1,21 @@
 package com.esprit.examen.services;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.esprit.examen.entities.CategorieProduit;
+
 import com.esprit.examen.entities.Produit;
 import com.esprit.examen.entities.Stock;
+import com.esprit.examen.entities.dto.ProduitRequestModel;
 import com.esprit.examen.repositories.CategorieProduitRepository;
 import com.esprit.examen.repositories.ProduitRepository;
 import com.esprit.examen.repositories.StockRepository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -23,10 +28,10 @@ public class ProduitServiceImpl implements IProduitService {
 	StockRepository stockRepository;
 	@Autowired
 	CategorieProduitRepository categorieProduitRepository;
-
+	ModelMapper modelMapper = new ModelMapper();
 	@Override
 	public List<Produit> retrieveAllProduits() {
-		List<Produit> produits = (List<Produit>) produitRepository.findAll();
+		List<Produit> produits = produitRepository.findAll();
 		for (Produit produit : produits) {
 			log.info(" Produit : " + produit);
 		}
@@ -34,9 +39,10 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Transactional
-	public Produit addProduit(Produit p) {
-		produitRepository.save(p);
-		return p;
+	public Produit addProduit(ProduitRequestModel prod) {
+		Produit p = modelMapper.map(prod,Produit.class);
+		
+		return produitRepository.save(p);
 	}
 
 	
@@ -47,7 +53,9 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public Produit updateProduit(Produit p) {
+	public Produit updateProduit(ProduitRequestModel prod) {
+		Produit p = modelMapper.map(prod,Produit.class);
+		produitRepository.save(p);
 		return produitRepository.save(p);
 	}
 
@@ -60,10 +68,12 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public void assignProduitToStock(Long idProduit, Long idStock) {
-		Produit produit = produitRepository.findById(idProduit).orElse(null);
-		Stock stock = stockRepository.findById(idStock).orElse(null);
-		produit.setStock(stock);
-		produitRepository.save(produit);
+		Optional<Produit>  produit = produitRepository.findById(idProduit);
+		Optional<Stock> stock = stockRepository.findById(idStock);
+		if (produit.isPresent() && stock.isPresent()) {
+			produit.get().setStock(stock.get( ));
+			produitRepository.save(produit.get());
+		}
 
 	}
 
