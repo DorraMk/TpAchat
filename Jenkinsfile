@@ -72,13 +72,13 @@ pipeline {
              }
        }
 
-       stage("Push to DockerHub") {
+     /*   stage("Push to DockerHub") {
             steps {
                 
                         sh 'docker login -u fedix23 -p Solid1337'
                         sh 'docker image push fedix23/devops:latest'
                 }
-            } 
+            }  */
             
 /*  stage('Push Docker Images to Nexus Registry'){
 steps{
