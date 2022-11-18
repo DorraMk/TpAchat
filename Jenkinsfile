@@ -83,9 +83,9 @@ pipeline {
  stage('Push Docker Images to Nexus Registry'){
 steps{
     script{
-        sh 'docker login -u admin -p bigfk http://192.168.56.0:8082/repository/docker/'
-sh 'docker push http://192.168.56.0:8082/repository/docker/nexusdocker}'
-sh 'docker rmi $(docker images --filter=reference="http://192.168.56.0:8082/repository/docker/nexusdocker" -q)'
+        sh 'docker login -u admin -p bigfk http://192.168.56.0:8082/repository/docker/v2'
+sh 'docker push http://192.168.56.0:8082/repository/docker/v2/nexusdocker}'
+sh 'docker rmi $(docker images --filter=reference="http://192.168.56.0:8082/repository/docker/v2/nexusdocker" -q)'
     }
 }
 }
