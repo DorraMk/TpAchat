@@ -29,6 +29,12 @@ pipeline {
                 echo "Testing Project"
                 sh 'mvn compile validate test'
             }
+
+        stage('Mockito Test') {
+                     steps {
+                         echo "Testing Project"
+                         sh 'mvn compile validate test'
+                     }
         }
 
         stage('Sonarqube Test') {
