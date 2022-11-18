@@ -81,9 +81,13 @@ pipeline {
             } */
             
 stage('Push Docker Images to Nexus Registry'){
-sh 'docker login -u admin -p bigfk http://192.168.56.0:8081/repository/docker/'
+steps{
+    script{
+        sh 'docker login -u admin -p bigfk http://192.168.56.0:8081/repository/docker/'
 sh 'docker push http://192.168.56.0:8081/repository/docker/nexusdocker}'
 sh 'docker rmi $(docker images --filter=reference="http://192.168.56.0:8081/repository/docker/nexusdocker" -q)'
+    }
+}
 }
  stage('Pull image from Nexus') {
             steps {
