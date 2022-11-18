@@ -85,7 +85,7 @@ stage('Pull artifact from Nexus'){
 
         }
 
-        stage('Push Docker Images to Nexus Registry'){
+       /*  stage('Push Docker Images to Nexus Registry'){
         steps{
             script{
                 sh 'docker login -u admin -p adminadmin http://172.10.0.140:8087/repository/docker/'
@@ -101,7 +101,7 @@ stage('Pull artifact from Nexus'){
                             }
 
                     }
-                }
+                } */
         stage("Docker-Compose") {
           steps {
               sh 'docker-compose up -d'
