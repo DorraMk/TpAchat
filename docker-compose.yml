@@ -15,8 +15,6 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: 'fedix23/devops:latest'  
-
     build:
       context: "./"
      # dockerfile: "Dockerfile"
