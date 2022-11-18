@@ -101,7 +101,7 @@ sh 'docker rmi $(docker images --filter=reference="http://192.168.56.0:8082/repo
 
         stage("Docker-Compose") {
           steps {
-              sh 'docker compose up -d'
+              sh 'docker-compose up -d'
              }
 
 
