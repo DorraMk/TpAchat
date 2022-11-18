@@ -58,7 +58,12 @@ pipeline {
 
     }
 
+stage('Pull artifact from Nexus'){
+            steps{
 
+                sh "curl http://172.10.0.140:8081/repository/maven-snapshots/tn/esprit/rh/achat/1.0.0-SNAPSHOT/achat-1.0.0-20221117.212748-1.jar --output achat-1.0.0-SNAPSHOT.jar";
+            }
+        }
         stage("Build our Image") {
           steps {
 
