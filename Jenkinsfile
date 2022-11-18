@@ -62,7 +62,7 @@ pipeline {
             steps{
                 
                 sh "curl http://192.168.56.0:8081/repositoryt/maven-snapshots/com/esprit/examen/tpAchatProject/1.0.0-SNAPSHOT/tpAchatProject-1.0.0-20221118.130348-1.jar --output tpAchatProject-1.0.jar";
-            }
+            }}
       
         stage("Build our Image") {
           steps {
