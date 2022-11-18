@@ -58,12 +58,12 @@ pipeline {
 
     }
 
-     stage('Pull artifact from Nexus'){
+   /*   stage('Pull artifact from Nexus'){
             steps{
                 
                 sh "curl http://192.168.56.0:8081/repositoryt/maven-snapshots/com/esprit/examen/tpAchatProject/1.0.0-SNAPSHOT/tpAchatProject-1.0.0-20221117.192638-1.jar --output tpAchatProject-1.0.jar";
             }
-        }
+        } */
         stage("Build our Image") {
           steps {
 
@@ -72,13 +72,13 @@ pipeline {
              }
        }
 
-     /*   stage("Push to DockerHub") {
+       stage("Push to DockerHub") {
             steps {
                 
                         sh 'docker login -u fedix23 -p Solid1337'
                         sh 'docker image push fedix23/devops:new'
                 }
-            } */
+            } 
             
 stage('Push Docker Images to Nexus Registry'){
 steps{
