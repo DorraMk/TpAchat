@@ -58,12 +58,12 @@ pipeline {
 
     }
 
-   /*   stage('Pull artifact from Nexus'){
+     stage('Pull artifact from Nexus'){
             steps{
                 
-                sh "curl http://192.168.56.0:8081/repositoryt/maven-snapshots/com/esprit/examen/tpAchatProject/1.0.0-SNAPSHOT/tpAchatProject-1.0.0-20221117.192638-1.jar --output tpAchatProject-1.0.jar";
+                sh "curl http://192.168.56.0:8081/repositoryt/maven-snapshots/com/esprit/examen/tpAchatProject/1.0.0-SNAPSHOT/tpAchatProject-1.0.0-20221118.130348-1.jar --output tpAchatProject-1.0.jar";
             }
-        } */
+      
         stage("Build our Image") {
           steps {
 
@@ -76,11 +76,11 @@ pipeline {
             steps {
                 
                         sh 'docker login -u fedix23 -p Solid1337'
-                        sh 'docker image push fedix23/devops:new'
+                        sh 'docker image push fedix23/devops:latest'
                 }
             } 
             
-/* stage('Push Docker Images to Nexus Registry'){
+ stage('Push Docker Images to Nexus Registry'){
 steps{
     script{
         sh 'docker login -u admin -p bigfk http://192.168.56.0:8082/repository/docker/'
@@ -96,7 +96,7 @@ sh 'docker rmi $(docker images --filter=reference="http://192.168.56.0:8082/repo
                     }
                 
             }
-        } */
+        } 
         
 
         stage("Docker-Compose") {
