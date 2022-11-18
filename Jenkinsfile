@@ -88,16 +88,16 @@ stage('Pull artifact from Nexus'){
         stage('Push Docker Images to Nexus Registry'){
         steps{
             script{
-                sh 'docker login -u admin -p adminadmin http://172.10.0.140:8081/repository/docker/'
+                sh 'docker login -u admin -p adminadmin http://172.10.0.140:8087/repository/docker/'
         sh 'docker push http://172.10.0.140:8081/repository/docker/nexusdocker}'
-        sh 'docker rmi $(docker images --filter=reference="http://172.10.0.140:8081/repository/docker/nexusdocker" -q)'
+        sh 'docker rmi $(docker images --filter=reference="http://172.10.0.140:8087/repository/docker/nexusdocker" -q)'
             }
         }
         }
          stage('Pull image from Nexus') {
                     steps {
                         script{
-                                sh "docker pull http://172.10.0.140:8081/repository/docker/nexusdocker:latest"
+                                sh "docker pull http://172.10.0.140:8087/repository/docker/nexusdocker:latest"
                             }
 
                     }
