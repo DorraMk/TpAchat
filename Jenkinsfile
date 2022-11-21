@@ -17,7 +17,7 @@ environment {
         stage("SRC Analysis Testing ")
         {
             steps {
-                sh 'mvn sonar:sonar -Pcoverage -Dsonar.login=admin -Dsonar.password=wiss-1998'
+                sh 'mvn sonar:sonar -Pcoverage -Dsonar.login=admin -Dsonar.password=mahdi1234'
               
             }
         }
