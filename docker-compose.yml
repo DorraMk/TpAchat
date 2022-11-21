@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mahdigl:
+    container_name: mahdigl
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 0000
+    volumes:
+        - /home/mysql/data:/var/lib/mysql
+  spring_app:
+    image: mahdigallas/tp_achat_project
+    container_name: tpachat
+    restart: on-failure
+    ports:
+      - 9092:9092
+    depends_on:
+        - mahdigl
