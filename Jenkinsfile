@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'Agent1'}
+    agent {label 'agent'}
 
 environment {
         imagename = "projetachat"
